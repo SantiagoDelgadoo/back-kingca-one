@@ -29,6 +29,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab44",
         name: "Mago Emmanuel",
+        description:"Emanuel is the most recognized ARGENTINE magician in LATIN AMERICA. EMANUEL GANDOLFO is his full name.",
         photo: "https://i1.sndcdn.com/artworks-h4r5dxHU1pSk7U8F-cKoYuQ-t500x500.jpg",
         price: 1500,
         date: "2023-11-14",
@@ -37,6 +38,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab45",
         name: " L’impératrice",
+        description:"L'Impératrice is a French pop music and nu-disco group established in Paris in 2012. It is made up of Charles de Boisseguin, Hagni Gwon, David Gaugué, Achille Trocellier, Tom Daveau and singer Flore Benguigui, who joined the band in 2015. As of 2021 they have released two studio albums and nine EPs.",
         photo: "https://www.sala-apolo.com/uploads/media/default/0001/03/thumb_2993_default_wide.jpeg",
         price: 4000,
         date: "2023-5-20",
@@ -45,6 +47,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab45",
         name: "David Guetta",
+        description:"Pierre David Guetta is a French DJ, composer and producer. He currently ranks #2 according to the poll conducted by DJ Magazine. He got his start in various clubs during the 1980s and 1990s, before founding Gum Productions and releasing his first album, Just a Little More Love.",
         photo: "https://www.larepublica.ec/wp-content/uploads/2014/10/guetta2.png",
         price: 6500,
         date: "2023-03-28",
@@ -53,6 +56,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab48",
         name: "U2",
+        description:"U2 is an alternative rock band from Dublin formed in 1976 by Bono, The Edge, Adam Clayton, and Larry Mullen Jr.",
         photo: "https://static.wikia.nocookie.net/lossimpson/images/0/02/U26.jpg/revision/latest?cb=20111220210807&path-prefix=es",
         price: 10000,
         date: "2023-05-13",
@@ -61,6 +65,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab48",
         name: "Mr. Bean",
+        description:"The character's jokes are that Mr. Bean has the soul and clumsy gestures of a child, he hardly speaks, since he generally expresses himself with mimicry, and is characterized by the clumsiness and innocence with which he gets into very complicated situations, of which which then comes out with wit and self-centeredness.",
         photo: "https://www.nacion.com/resizer/poPw_EJNVQDwUs2kyXKFF8qRHOE=/1440x0/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/gruponacion/VK45RJBFHVDJZNF7ND7G4CTHYU.jpeg",
         price: 1350,
         date: "2023-09-06",
@@ -69,6 +74,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab46",
         name: "Robbie Williams",
+        description:"Robert Peter Williams, better known as Robbie Williams, is a British pop rock singer, songwriter and actor. He began his musical career in the group Take That.",
         photo: "https://yt3.ggpht.com/ytc/AMLnZu_q_r5IDfw5uZEOrh9ZWZCD-K8Ab_9ZhF-aag9J=s900-c-k-c0x00ffffff-no-rj",
         price: 8000,
         date: "2023-12-04",
@@ -77,6 +83,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab46",
         name: "Russell Howard",
+        description:"Russell Joseph Howard is an English comedian, television presenter, radio host and actor. He was known for his TV show Russell Howard's Good News and is currently doing The Russell Howard Hour and his appearances on the TV show Mock the Week.",
         photo: "https://i.guim.co.uk/img/media/21de53d9a63650d597c812f2b8e4695a3fc88369/0_82_3129_1877/master/3129.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=4cff2d79ea769f32f59db1bc6063ac8b",
         price: 1000,
         date: "2023-01-21",
@@ -85,6 +92,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab42",
         name: "Tom Allen",
+        description:"Thomas Paul Allen is an English comedian, actor, writer and presenter. In 2005, Allen won the So You Think You're Funny contest.",
         photo: "https://i.guim.co.uk/img/media/d7428a87e15c1a6b0725d17a8b0a7ff5175372ee/1161_971_1824_1094/master/1824.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=43a30872b9c7fd4b198d3f351c45bad3",
         price: 3000,
         date: "2023-06-19",
@@ -93,6 +101,7 @@ let events = [
     {
         hotelId: "636d5ff16abdddfa7405ab42",
         name: "Coldplay",
+        description:"Coldplay is a British pop rock and alternative rock band formed in London in 1996. It consists of Chris Martin, Jon Buckland, Guy Berryman and Will Champion.",
         photo: "https://dynamicmedia.livenationinternational.com/Media/g/p/o/eb285dd6-45d0-4f98-9ab5-aa7cc8075a98.jpg?auto=webp&width=1507.2",
         price: 12000,
         date: "2023-07-01",
@@ -106,10 +115,12 @@ const Event = require('../Event')
 
 events.forEach((element) => {
   Event.create({
+    hotelId:element.hotelId,
     name: element.name,
     description:element.description,
     photo:element.photo,
     price: element.price,
     date:element.date,
+    userId:element.userId,
   });
 });
