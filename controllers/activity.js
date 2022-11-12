@@ -41,5 +41,25 @@ const controller ={
             }
             
             },
+
+           EditActivity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
+                let {id} = req.params
+                try {
+                let editActivity = await Activity.findByIdAndUpdate({_id: id})
+                res.status(201).json({//el status de exito de creacion es 201
+                    id: editActivity._id,
+                    success: true,
+                    messagge: 'activityEdit'
+                }) 
+                
+                } catch (error) {
+                    res.status(400).json({
+                        success: false,
+                        messagge: 'activityNoEdit',
+                        error: error.status
+                    })
+                }
+                
+                },
 }
 module.exports = controller //exporto el controlador
