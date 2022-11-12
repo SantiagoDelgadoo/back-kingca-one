@@ -40,5 +40,25 @@ const controller ={
             }
             
             },
+
+            EditCity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
+                let {id} = req.params
+                try {
+                let editCity = await City.findByIdAndUpdate({_id: id})
+                res.status(201).json({//el status de exito de creacion es 201
+                    id: editCity._id,
+                    success: true,
+                    messagge: 'cityEdit'
+                }) 
+                
+                } catch (error) {
+                    res.status(400).json({
+                        success: false,
+                        messagge: 'cityNoEdit',
+                        error: error.status
+                    })
+                }
+                
+                },
 }
 module.exports = controller //exporto el controlador
