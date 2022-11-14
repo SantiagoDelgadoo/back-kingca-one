@@ -45,6 +45,33 @@ const controller = {
       });
     }
   },
+
+  updateHotel: async (req, res) => {
+    let { id } = req.params;
+    try {
+      let update_Hotel = await Hotel.findByIdAndUpdate({ _id: id }, req.body, {
+        new: true,
+      });
+      if (update_Hotel) {
+        res.status(201).json({
+          id: update_Hotel._id,
+          success: true,
+          messagge: "Hotel Update",
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          messagge: "Hotel not found",
+        });
+      }
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        messagge: "Hotel no update",
+        error: error.status,
+      });
+    }
+  },
 };
 
 //tercero exporto el controlador
