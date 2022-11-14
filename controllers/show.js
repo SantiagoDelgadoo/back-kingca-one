@@ -40,6 +40,32 @@ const controller = {
       });
     }
   },
+  updateShow: async (req, res) => {
+    let { id } = req.params;
+    try {
+      let update_Show = await Show.findByIdAndUpdate({ _id: id }, req.body, {
+        new: true,
+      });
+      if (update_Show) {
+        res.status(201).json({
+          id: update_Show._id,
+          success: true,
+          messagge: "Show Update",
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          messagge: "Show not found",
+        });
+      }
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        messagge: "Show no update",
+        error: error.status,
+      });
+    }
+  },
 };
 
 module.exports = controller;
