@@ -60,7 +60,29 @@ const controller={
                 }
             )
         }
-    }
+    },
+
+    readHotel: async (req,res) =>{
+        let {hotelId} = req.query
+        try {
+        let readHotel = await Hotel.find({hotelId: hotelId}).populate("userid","name & photo")
+        res.status(201).json({
+            id: readHotel,
+            success: true,
+            messagge: 'readHotel'
+        }) 
+
+        } catch (error) {
+            res.status(400).json({
+                success: false,
+                messagge: 'no read Hotel',
+                error: error.status
+            })
+        }
+
+        },
+
+
 }
 
 
