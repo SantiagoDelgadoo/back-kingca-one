@@ -41,13 +41,13 @@ const controller={
                 res.status(200).json({
                     response : arrayHotels,
                     success: true,
-                    message:"el usuario se creo satisfactoriamente"    
+                    message:"el hotel se creo correctamente"    
                 })
                 }
                 else{
                     res.status(404).json({
                         success: false,
-                        message:"no hay usuarios"    
+                        message:"no hay hoteles"    
                     })  
                 }
            
@@ -62,26 +62,28 @@ const controller={
         }
     },
 
-    readHotel: async (req,res) =>{
-        let {hotelId} = req.query
+    readHotel: async (req, res) => {
+        let { id } = req.params;
+    
         try {
-        let readHotel = await Hotel.find({hotelId: hotelId}).populate("userid","name & photo")
-        res.status(201).json({
-            id: readHotel,
-            success: true,
-            messagge: 'readHotel'
-        }) 
-
-        } catch (error) {
-            res.status(400).json({
+          const hotel = await Hotel.findById({ _id: id }).populate("userId", ("name & photo"));
+          hotel
+            ? res.status(200).json({
+                hotel: hotel,
+                success: true,
+                message: "read hotel",
+              })
+            : res.status(400).json({
                 success: false,
-                messagge: 'no read Hotel',
-                error: error.status
-            })
+                message: "hotel not found",
+              });
+        } catch (error) {
+          res.status(400).json({
+            success: false,
+            message: error.message,
+          });
         }
-
-        },
-
+      },
 
 }
 
