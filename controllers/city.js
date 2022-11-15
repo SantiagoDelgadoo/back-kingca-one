@@ -87,5 +87,25 @@ const controller ={
                     }
                     
                     },
+
+                CaptureCity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
+                    let {id} = req.params
+                    try {
+                    let captureCity = await City.findById({_id: id}).populate("userid","name & photo")
+                    res.status(201).json({//el status de exito de creacion es 201
+                        id: captureCity,
+                        success: true,
+                        messagge: 'captureCity'
+                    }) 
+                    
+                    } catch (error) {
+                        res.status(400).json({
+                            success: false,
+                            messagge: 'noCaptureCity',
+                            error: error.status
+                        })
+                    }
+                    
+                    },
 }
 module.exports = controller //exporto el controlador
