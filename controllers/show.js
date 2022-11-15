@@ -66,6 +66,23 @@ const controller = {
       });
     }
   },
-};
+
+  readShow: async (req,res) =>{
+    let { hotelId } = req.query;
+    try {
+      let shows = await Show.find({hotelId: hotelId }).populate("userId", "_id");
+      res.status(201).json({
+        id:shows,
+        success: true,
+        message: "read Show",
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+}
+}
 
 module.exports = controller;
