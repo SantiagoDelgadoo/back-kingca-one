@@ -66,16 +66,11 @@ const controller={
         let { id } = req.params;
     
         try {
-          const hotel = await Hotel.findById({ _id: id }).populate("userId", ("name & photo"));
-          hotel
-            ? res.status(200).json({
-                hotel: hotel,
+          let hotel = await Hotel.findById({ _id: id }).populate("userId", ("name & photo"));
+             res.status(200).json({
+                id: hotel,
                 success: true,
-                message: "read hotel",
-              })
-            : res.status(400).json({
-                success: false,
-                message: "hotel not found",
+                message: "read hotel"
               });
         } catch (error) {
           res.status(400).json({
