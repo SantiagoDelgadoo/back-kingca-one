@@ -6,4 +6,6 @@ router.route("/").post(create);
 router.route("/:id").delete(destroy);
 router.route("/:id").patch(updateShow);
 router.route("/").get(readShow)
+
 module.exports = router;
+

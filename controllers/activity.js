@@ -61,5 +61,25 @@ const controller ={
                 }
                 
                 },
+
+                CaptureActivity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
+                    let {cityId} = req.query
+                    try {
+                    let captureActivity = await Activity.find({cityid: cityId}).populate("userId","_id")
+                    res.status(201).json({//el status de exito de creacion es 201
+                        id: captureActivity,
+                        success: true,
+                        messagge: 'captureActivity'
+                    }) 
+                    
+                    } catch (error) {
+                        res.status(400).json({
+                            success: false,
+                            messagge: 'noCaptureActivity',
+                            error: error.status
+                        })
+                    }
+                    
+                    },
 }
 module.exports = controller //exporto el controlador
