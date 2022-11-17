@@ -1,4 +1,4 @@
-let activities = [
+let itineraries = [
     {
         cityid: "636d5c20033f2a5f173b1129",
         name: "Eiffel Tower",
@@ -75,7 +75,7 @@ let activities = [
         cityid: "636d5c20033f2a5f173b1128",
         name: "London Scavenger Hunt: The Magnificent City of London",
         photo: "https://photos.letsroam.com/scavenger_hunt_location_stops/scavenger_hunt_location_1565240331_large.jpg",
-        description: "Walk to all the best landmarks and hidden gems, answering trivia questions and solving challenges. Work with your team or compete against them, as you learn new facts and create memorable experiences. Let’s Roam Scavenger Hunts are great as an everyday activity, or for bachelorette parties, birthday parties, corporate team building events and more! Each player chooses an interactive role, with challenges varying by person.",
+        description: "Walk to all the best landmarks and hidden gems, answering trivia questions and solving challenges. Work with your team or compete against them, as you learn new facts and create memorable experiences. Let’s Roam Scavenger Hunts are great as an everyday itinerary, or for bachelorette parties, birthday parties, corporate team building events and more! Each player chooses an interactive role, with challenges varying by person.",
         price: 13,
         duration: 2,
         userId: "636d39111834aa8ba98269f0" ,
@@ -92,7 +92,7 @@ let activities = [
     {
         cityid: "636d5c20033f2a5f173b1126",
         name: "Challenge Sumo Wrestlers and Enjoy a Chanko Lunch",
-        photo: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_971/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/fdndr1bzl7fsjjuevq7h/SumoShowExperiencewithChankoLunch.jpg",
+        photo: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_971/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/itineraries/fdndr1bzl7fsjjuevq7h/SumoShowExperiencewithChankoLunch.jpg",
         description: "Eat, train, and fight like a real Japanese sumo wrestler during this sumo demonstration and authentic ‘Chanko Nabe’ (hotpot) meal. Discover the history, training, and rules behind the typical sumo match as you watch real clashes. You can even try it yourself during a skirmish with a retired wrestler. Once you’ve worked up an appetite, dig into a tasty Chanko Nabe, a filling meal of hotpot, rice, miso, salad, French fries and more, used by these hulking fighters to gain weight. Admission to the demonstration and meals are both covered.",
         price: 60,
         duration: 2,
@@ -112,9 +112,9 @@ let activities = [
 
     require('dotenv').config(); //requiero la configuracion de dotenv
 require('../../config/database'); //requiero la configuracion de la database
-const Activity = require('../Activity') //requiero el modelo
-activities.forEach(element =>{
-Activity.create ({//metodo de mongoose en el cual dentro de el voy a pasar la estructura del modelo
+const Itinerary = require('../Itinerary') //requiero el modelo
+itineraries.forEach(element =>{
+Itinerary.create ({//metodo de mongoose en el cual dentro de el voy a pasar la estructura del modelo
         cityid: element.cityid,
         name: element.name,
         photo: element.photo,

@@ -1,20 +1,20 @@
-const Activity = require('../models/Activity') //requiero el modelo que necesito controlar
+const Itinerary = require('../models/Itinerary') //requiero el modelo que necesito controlar
 const controller ={
     create: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
 
         try {
-        let new_activity = await Activity.create(req.body) //defino variable que va a esperar la creacion de un nuevo documento (un usuario en este caso)
+        let new_itinerary = await Itinerary.create(req.body) //defino variable que va a esperar la creacion de un nuevo documento (un usuario en este caso)
         
         res.status(201).json({//el status de exito de creacion es 201
-            id: new_activity._id,
+            id: new_itinerary._id,
             success: true,
-            messagge: 'activityCreated'
+            messagge: 'itineraryCreated'
         }) 
         
         } catch (error) {
             res.status(400).json({
                 success: false,
-                messagge: 'activityNoCreated',
+                messagge: 'itineraryNoCreated',
                 error: error.status
             })
         }
@@ -22,60 +22,60 @@ const controller ={
         },
 
 
-        deleteActivity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
+        deleteItinerary: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
             let {id} = req.params
             try {
-            let delete_activity = await Activity.findOneAndDelete({_id: id})
+            let delete_itinerary = await Itinerary.findOneAndDelete({_id: id})
             res.status(201).json({//el status de exito de creacion es 201
-                id: delete_activity._id,
+                id: delete_itinerary._id,
                 success: true,
-                messagge: 'activityDelete'
+                messagge: 'itineraryDelete'
             }) 
             
             } catch (error) {
                 res.status(400).json({
                     success: false,
-                    messagge: 'activityNoDelete',
+                    messagge: 'itineraryNoDelete',
                     error: error.status
                 })
             }
             
             },
 
-           EditActivity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
+           EditItinerary: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
                 let {id} = req.params
                 try {
-                let editActivity = await Activity.findByIdAndUpdate({_id: id})
+                let editItinerary = await Itinerary.findByIdAndUpdate({_id: id})
                 res.status(201).json({//el status de exito de creacion es 201
-                    id: editActivity._id,
+                    id: editItinerary._id,
                     success: true,
-                    messagge: 'activityEdit'
+                    messagge: 'itineraryEdit'
                 }) 
                 
                 } catch (error) {
                     res.status(400).json({
                         success: false,
-                        messagge: 'activityNoEdit',
+                        messagge: 'itineraryNoEdit',
                         error: error.status
                     })
                 }
                 
                 },
 
-                CaptureActivity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
+                CaptureItinerary: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
                     let {cityId} = req.query
                     try {
-                    let captureActivity = await Activity.find({cityid: cityId}).populate("userId","_id")
+                    let captureItinerary = await Itinerary.find({cityid: cityId}).populate("userId","_id")
                     res.status(201).json({//el status de exito de creacion es 201
-                        id: captureActivity,
+                        id: captureItinerary,
                         success: true,
-                        messagge: 'captureActivity'
+                        messagge: 'captureItinerary'
                     }) 
                     
                     } catch (error) {
                         res.status(400).json({
                             success: false,
-                            messagge: 'noCaptureActivity',
+                            messagge: 'noCaptureItinerary',
                             error: error.status
                         })
                     }
