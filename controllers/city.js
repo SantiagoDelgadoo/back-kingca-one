@@ -6,7 +6,7 @@ const controller ={
         let new_city = await City.create(req.body) //defino variable que va a esperar la creacion de un nuevo documento (un usuario en este caso)
         
         res.status(201).json({//el status de exito de creacion es 201
-            id: new_city._id,
+            new_city: new_city,
             success: true,
             messagge: 'cityCreated'
         }) 
