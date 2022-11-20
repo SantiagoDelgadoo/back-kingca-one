@@ -11,7 +11,7 @@ const controller = {
       res.status(201).json({
         id: new_hotel._id,
         success: true,
-        message: "el usuario se creo satisfactoriamente",
+        message: "el Hotel se creo satisfactoriamente",
       });
     } catch (error) {
       res.status(400).json({
