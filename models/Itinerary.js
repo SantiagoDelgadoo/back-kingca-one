@@ -10,5 +10,5 @@ const schema = new mongoose.Schema({ //creo el esquema que necesita el modelo
     userId: {type: mongoose.Types.ObjectId,ref:'users', required: true}, //le paso id de la base de datos de users
 }) 
 
-const Activity = mongoose.model('activities',schema)
-module.exports= Activity
+const Itinerary = mongoose.model('itineraries',schema)
+module.exports= Itinerary
