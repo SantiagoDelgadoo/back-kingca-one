@@ -1,4 +1,4 @@
-const Show = require("../models/Event");
+const Show = require("../models/Show");
 
 const controller = {
   create: async (req, res) => {
