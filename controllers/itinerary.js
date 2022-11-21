@@ -63,9 +63,18 @@ const controller ={
                 },
 
                 CaptureItinerary: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
-                    let {cityId} = req.query
+                    /* let {cityId} = req.query */
+                    let query = {}
+                    if (req.query.cityId) {
+                        query={...query,
+                        cityid:req.query.cityId}
+                    }
+                    if (req.query.userId) {
+                        query={...query,
+                        userId:req.query.userId}
+                    }
                     try {
-                    let captureItinerary = await Itinerary.find({cityid: cityId}).populate("userId","_id")
+                    let captureItinerary = await Itinerary.find(query).populate("userId","_id")
                     res.status(201).json({//el status de exito de creacion es 201
                         id: captureItinerary,
                         success: true,
