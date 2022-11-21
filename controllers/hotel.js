@@ -9,7 +9,7 @@ const controller = {
     try {
       let new_hotel = await Hotel.create(req.body);
       res.status(201).json({
-        id: new_hotel._id,
+        response: new_hotel,
         success: true,
         message: "el Hotel se creo satisfactoriamente",
       });
