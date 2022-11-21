@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "citytest": "mocha ./test/cities.test"
+    "citytest": "mocha ./test/cities.test",
+    "test-hotel": "mocha ./test/hotels.test.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
