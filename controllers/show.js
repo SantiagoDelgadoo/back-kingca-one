@@ -68,9 +68,15 @@ const controller = {
   },
 
   readShow: async (req,res) =>{
-    let { hotelId } = req.query;
+    let query = {}
+    if (req.query.hotelId){
+      query = {...query, hotelId: req.query.hotelId}
+    }
+    if (req.query.userId){
+      query = {...query, userId: req.query.userId}
+    }
     try {
-      let shows = await Show.find({hotelId: hotelId }).populate("userId", "_id");
+      let shows = await Show.find(query).populate("userId", "_id");
       res.status(201).json({
         id:shows,
         success: true,
