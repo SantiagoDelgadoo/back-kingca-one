@@ -2,7 +2,7 @@ let router = require ('express').Router () //requiero el metodo de enrrutamiento
 const controllers = require ('../controllers/city')
 let { create,deleteCity,EditCity,SeeCity,CaptureCity } = require ('../controllers/city') //desestructuro el controlador de user para traerme los metodos que necesito enrrutar, mas adelante si quier agregar alguno los voy a poder agregar dentro de las {} y utilizando una , para separarlos
 const validator = require ('../middlewares/validator')
-const schema = require ('../schemas/schemaCity')
+const schema = require ('../schema/schemaCity')
 
 
 router.route('/').post(validator(schema), create) 
