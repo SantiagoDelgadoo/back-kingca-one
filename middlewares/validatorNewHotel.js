@@ -10,5 +10,4 @@ const validator=(schema) => [
         next()
     }
 ]
-
 module.exports= validator
