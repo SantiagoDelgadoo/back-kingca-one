@@ -21,63 +21,61 @@ const controller = {
     }
   },
 
-    read: async (req,res) => {
-        let query={}
-        let order = {}
-        if (req.query.name){
-            query={name:{ $regex: req.query.name, $options: "s && i" }}
-        }
-        if (req.query.order){
-            order={name:req.query.order}
-        }
+  read: async (req, res) => {
+    let query = {};
+    let order = {};
+    if (req.query.name) {
+      query = { name: { $regex: req.query.name, $options: "s && i" } };
+    }
+    if (req.query.order) {
+      order = { name: req.query.order };
+    }
+    if (req.query.userId) {
+      query = { ...query, userId: req.query.userId };
+    }
 
-        console.log(req.query.name);
-            try {
-            let arrayHotels = await Hotel.find(query).sort(order)
-            if (arrayHotels){
-                res.status(200).json({
-                    response : arrayHotels,
-                    success: true,
-                    message:"el hotel se creo correctamente"    
-                })
-                }
-                else{
-                    res.status(404).json({
-                        success: false,
-                        message:"no hay hoteles"    
-                    })  
-                }
-           
-            
-        } catch (error) {
-            res.status(400).json(
-                {
-                    success: false,
-                    message: error.message
-                }
-            )
-        }
+    console.log(req.query.name);
+    try {
+      let arrayHotels = await Hotel.find(query).sort(order);
+      if (arrayHotels) {
+        res.status(200).json({
+          response: arrayHotels,
+          success: true,
+          message: "el hotel se creo correctamente",
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: "no hay hoteles",
+        });
+      }
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 
-    },
-
-    readHotel: async (req, res) => {
-        let { id } = req.params;
-    
-        try {
-          let hotel = await Hotel.findById({ _id: id }).populate("userId", ("name & photo"));
-             res.status(200).json({
-                id: hotel,
-                success: true,
-                message: "read hotel"
-              });
-        } catch (error) {
-          res.status(400).json({
-            success: false,
-            message: error.message,
-          });
-        }
-      },
-
+  readHotel: async (req, res) => {
+    let { id } = req.params;
+    try {
+      let hotel = await Hotel.findById({ _id: id }).populate(
+        "userId",
+        "name & photo"
+      );
+      res.status(200).json({
+        id: hotel,
+        success: true,
+        message: "read hotel",
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 
   destroy: async (req, res) => {
     let { id } = req.params;
@@ -104,7 +102,6 @@ const controller = {
     }
   },
 
-
   updateHotel: async (req, res) => {
     let { id } = req.params;
     try {
@@ -113,7 +110,7 @@ const controller = {
       });
       if (update_Hotel) {
         res.status(201).json({
-          id: update_Hotel._id,
+          id: update_Hotel,
           success: true,
           messagge: "Hotel Update",
         });
