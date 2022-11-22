@@ -45,13 +45,13 @@ const controller ={
            EditItinerary: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
                 let {id} = req.params
                 try {
-                let editItinerary = await Itinerary.findByIdAndUpdate({_id: id})
+                let editItinerary = await Itinerary.findByIdAndUpdate({_id: id},req.body,{new:true})
+                console.log(editItinerary);
                 res.status(201).json({//el status de exito de creacion es 201
-                    id: editItinerary._id,
+                    itineraryEdit: editItinerary,
                     success: true,
                     messagge: 'itineraryEdit'
                 }) 
-                
                 } catch (error) {
                     res.status(400).json({
                         success: false,
