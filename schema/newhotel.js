@@ -17,7 +17,7 @@ const schema = joi.object({
     "string.max": "description to long",
   }),
   cityId: joi.any(),
-  userId: joi.any(),
+  userId: joi.any(),//acomodar los dos iguales
 });
 
 module.exports = schema;
