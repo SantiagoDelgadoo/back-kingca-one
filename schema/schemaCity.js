@@ -20,11 +20,11 @@ const schema = joi.object({
         "string.base": "please insert a valid url",
     }),
     population: joi.number().required().messages({
-        "any.required": "population is required",
+        "string.empty": "the field is empty",
         "string.base": "population has to be a number",
     }),
     userid: joi.string().required().messages({
-        "any.required": "userid is required",
+        "string.empty": "the field is empty",
         "string.base": "userid must be a string",
     })
 })

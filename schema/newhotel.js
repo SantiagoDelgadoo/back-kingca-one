@@ -16,8 +16,14 @@ const schema = joi.object({
   description: joi.string().required().max(500).messages({
     "string.max": "description to long",
   }),
-  cityId: joi.any(),
-  userId: joi.any(),//acomodar los dos iguales
+  cityId: joi.string().required().messages({
+    "string.empty": "the field is empty",
+    "string.base": "userid must be a string",
+  }),
+  userId: joi.string().required().messages({
+    "string.empty": "the field is empty",
+    "string.base": "userid must be a string",
+  }),
 });
 
 module.exports = schema;
