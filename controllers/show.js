@@ -48,7 +48,7 @@ const controller = {
       });
       if (update_Show) {
         res.status(201).json({
-          id: update_Show._id,
+          id: update_Show,
           success: true,
           messagge: "Show Update",
         });
