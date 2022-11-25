@@ -1,16 +1,16 @@
 const app = require("../app");
 const chai = require("chai");
 const assert = chai.assert;
-const request = require("supertest"); 
+const request = require("supertest"); //use mocha chai y supertest
 
-describe("GET CITIES", function () {
-    it("Deberia testear que es un array", function (done) {
-        request(app)
-            .get("/api/city/")
-            .expect((response) => {
-                assert.typeOf(response.body.cities, "array", "Es un array");
+describe("GET CITIES", function () { //describe es un cuando armo un grupo de test, aca armo para agarrar las ciudades
+    it("Deberia testear que es un array", function (done) { //el it es como un caso, primer caso q sea un array
+        request(app) //pedido a la app
+            .get("/api/city/") //use get para las peticiones del back (metodo) 
+            .expect((response) => { //expect es de supertest (peticion)
+                assert.typeOf(response.body.cities, "array", "Es un array"); //assert.typeoff es de chai para verificar el tipo de dato
             })
-            .end(function (err, res) {
+            .end(function (err, res) { //end es para que finalice
                 if (err) {
                     return done(err);
                 }
@@ -19,15 +19,15 @@ describe("GET CITIES", function () {
             });
     });
 
-    it("Deberia testear que es un objeto", function (done) {
-        request(app)
-            .get("/api/city/")
-            .expect((response) => {
-                response.body.cities.forEach((city) =>
-                    assert.typeOf(city, "object", "Es un objeto")
+    it("Deberia testear que es un objeto", function (done) {//el it es como un caso, aca testea que es un objeto
+        request(app) //pedido a la app
+            .get("/api/city/") //use get para las peticiones del back (metodo)
+            .expect((response) => { //expect es de supertest (peticion)
+                response.body.cities.forEach((city) => //por cada city q encuentre
+                    assert.typeOf(city, "object", "Es un objeto") //con el type off verifica q sea un objeto
                 );
             })
-            .end(function (err, res) {
+            .end(function (err, res) { //end es para que finalice
                 if (err) {
                     return done(err);
                 }
@@ -44,7 +44,7 @@ describe("GET CITIES", function () {
 describe("POST CITIES", function () {
     it("Deberia testear que el campo name sea un string", function (done) {
         request(app)
-            .post("/api/city/")
+            .post("/api/city/") //uso metodo post para que cuando cree una ciudad lo q mande como name sea un string
             .send({
                 name: "Pehuajo",
                 continent: "America",
@@ -66,7 +66,7 @@ describe("POST CITIES", function () {
     it("Deberia testear que poniendo mal ruta va a dar un error 404", function (done) {
         request(app)
             .post("/api/cit/")
-            .expect(404)
+            .expect(404) //la unica expectativa es que de error 404
             .end(function (err, res) {
                 if (err) {
                     return done(err);
