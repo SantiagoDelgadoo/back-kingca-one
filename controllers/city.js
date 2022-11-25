@@ -6,7 +6,7 @@ const controller ={
         let new_city = await City.create(req.body) //defino variable que va a esperar la creacion de un nuevo documento (un usuario en este caso)
         
         res.status(201).json({//el status de exito de creacion es 201
-            id: new_city._id,
+            new_city: new_city,
             success: true,
             messagge: 'cityCreated'
         }) 
@@ -44,9 +44,9 @@ const controller ={
             EditCity: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
                 let {id} = req.params
                 try {
-                let editCity = await City.findByIdAndUpdate({_id: id})
+                let editCity = await City.findByIdAndUpdate({_id: id},req.body,{new:true})
                 res.status(201).json({//el status de exito de creacion es 201
-                    id: editCity._id,
+                    id: editCity,
                     success: true,
                     messagge: 'cityEdit'
                 }) 
@@ -69,6 +69,10 @@ const controller ={
                 if (req.query.continent){
                     query = {...query,
                     continent:req.query.continent}
+                }
+                if (req.query.userId){
+                    query = {...query,
+                        userid:req.query.userId}
                 }
                     try {
                     let seeCity = await City.find(query)
