@@ -77,6 +77,25 @@ signIn: async (req, res, next) => {
       next(error);
     }
   },
+  signInWithToken: async (req, res, next) => {
+    let { user } = req;
+    try {
+      return res.json({
+        response: {
+          user: {
+            name: user.name,
+            photo: user.photo,
+            logged: user.logged,
+            role: user.role,
+          },
+          success: true,
+          message: "Welcome: " + user.name
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 
 }
 module.exports = controller //exporto el controlador
