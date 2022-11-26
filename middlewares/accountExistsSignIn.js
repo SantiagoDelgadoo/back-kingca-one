@@ -4,15 +4,7 @@ const { invalidCredentialsResponse } = require("../config/responses");
 async function accountExists(req, res, next) {
     const user = await User.findOne({email: req.body.email})
     if (user) {
-        req.user = { //inyecto al req la propiedad user con los datos que necesito
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            photo: user.photo,
-            password: user.password,
-            verified: user.verified,
-            role: user.role,
-        }
+        req.user = user
         return next()
     }
     invalidCredentialsResponse(req,res)
