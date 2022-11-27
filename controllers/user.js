@@ -68,7 +68,7 @@ signIn: async (req, res, next) => {
         );
         return res.status(200).json({
           response: { user, token },
-          succes: true,
+          success: true,
           message: "Welcome" + user1.name,
         });
       }
