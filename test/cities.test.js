@@ -77,3 +77,17 @@ describe("POST CITIES", function () {
     });
 }); 
 
+describe("DELETE CITIES", function () {
+    it("Deberia testear que se elimino una ciudad", function (done) {
+        request(app)
+            .delete("/api/city/636d5c20033f2a5f173b1127")
+            .expect(201)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
+
+                done();
+            });
+    });
+    });
