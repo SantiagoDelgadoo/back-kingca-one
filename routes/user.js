@@ -1,6 +1,6 @@
 let router = require ('express').Router () //requiero el metodo de enrrutamiento de express
 
-let { userRegister,verifyUser,signIn,signInWithToken,getUser,EditUser, Logout } = require ('../controllers/user') //desestructuro el controlador de user para traerme los metodos que necesito enrrutar, mas adelante si quier agregar alguno los voy a poder agregar dentro de las {} y utilizando una , para separarlos
+let { userRegister,verifyUser,signIn,signInWithToken,getUser,EditUser, logout } = require ('../controllers/user') //desestructuro el controlador de user para traerme los metodos que necesito enrrutar, mas adelante si quier agregar alguno los voy a poder agregar dentro de las {} y utilizando una , para separarlos
 
 
 const accountExistsSignUp = require ('../middlewares/accountExistSignUp')
