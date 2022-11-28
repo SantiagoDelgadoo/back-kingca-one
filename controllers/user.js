@@ -108,6 +108,46 @@ const controller = {
       next(error);
     }
   },
+
+  getUser: async (req, res) => {
+    let { id } = req.params;
+    try {
+      let user = await User.findById({ _id: id })
+      res.status(200).json({
+        data: user,
+        success: true,
+        message: "read user",
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+  
+  EditUser: async (req,res) =>{
+    let {id} = req.params
+    try {
+    let editUser = await User.findByIdAndUpdate({_id: id},req.body,{new:true})
+    console.log(req.body);
+    res.status(201).json({
+        id: editUser,
+        success: true,
+        messagge: 'User Edit'
+    }) 
+    
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            messagge: 'User no Edit',
+            error: error.status
+        })
+    }
+    
+    },
+
+
   logout: async (req, res, next) => {
     const { email } = req.user;
     try {
@@ -117,6 +157,7 @@ const controller = {
       next(error);
     }
   },
+
 };
 
 module.exports = controller; //exporto el controlador
