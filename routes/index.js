@@ -6,7 +6,7 @@ let hotel = require("./hotel");
 let itinerary = require("./itinerary"); //ubicacion de las rutas de user
 let show = require("./show");
 
-router.use('/auth',user) //le obligo el enrrutador que use la palabra ./user para controlar las rutas de user 
+router.use('/user',user) //le obligo el enrrutador que use la palabra ./user para controlar las rutas de user 
 
 router.use('/city',city) //le obligo el enrrutador que use la palabra ./user para controlar las rutas de user 
 

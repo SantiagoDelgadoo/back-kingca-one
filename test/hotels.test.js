@@ -3,14 +3,14 @@ const assert = chai.assert;
 const app = require("../app");
 const request = require("supertest");
 
+
 describe("POST /api/hotels", function () {
   it("Deberia comprobar estatus de creacion del hotel", function (done) {
     request(app)
       .post("/api/hotel/")
       .send({
         name: "Casino Buenos Aires 8",
-        photo:
-          "https://choicecasino.com/media/ground_casino_photo/0001/89/thumb_88106_ground_casino_photo_standart.jpg",
+        photo:"https://choicecasino.com/media/ground_casino_photo/0001/89/thumb_88106_ground_casino_photo_standart.jpg",
         capacity: 15000,
         description:
           "Currently, Casino Buenos Aires has more than 2,000 collaborators who provide services in the different units of the company, whose structure is made up of areas of administration, finance, human resources, operations and security.",
@@ -18,14 +18,10 @@ describe("POST /api/hotels", function () {
         userId: "636d39111834aa8ba98269f0",
       })
       .expect((response) => {
-        assert.typeOf(
-          response.body.response.capacity,
-          "number",
-          "Es un numero"
-        );
+        assert.typeOf(response.body.response.capacity, "number", "Es un numero");
       })
       .expect(201)
-
+   
       .end(function (err, res) {
         if (err) {
           return done(err);
@@ -44,20 +40,6 @@ describe("GET /api/hotels", function () {
         if (err) {
           return done(err);
         }
-        done();
-      });
-  });
-});
-describe("DELETE /api/hotels", function () {
-  it("Deberia testear que se elimino un hotel", function (done) {
-    request(app)
-      .delete("/api/hotel/637c7929f1c58a317b8da6f1")
-      .expect(201)
-      .end(function (err, res) {
-        if (err) {
-          return done(err);
-        }
-
         done();
       });
   });

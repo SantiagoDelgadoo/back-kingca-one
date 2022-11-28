@@ -6,7 +6,7 @@ const controller ={
         let new_itinerary = await Itinerary.create(req.body) //defino variable que va a esperar la creacion de un nuevo documento (un usuario en este caso)
         
         res.status(201).json({//el status de exito de creacion es 201
-            id: new_itinerary,
+            id: new_itinerary._id,
             success: true,
             messagge: 'itineraryCreated'
         }) 

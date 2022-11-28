@@ -5,7 +5,7 @@ const controller = {
     try {
       let new_show = await Show.create(req.body);
       res.status(201).json({
-        id: new_show,
+        id: new_show._id,
         success: true,
         message: "el show se creo satisfactoriamente",
       });
@@ -67,18 +67,18 @@ const controller = {
     }
   },
 
-  readShow: async (req, res) => {
-    let query = {};
-    if (req.query.hotelId) {
-      query = { ...query, hotelId: req.query.hotelId };
+  readShow: async (req,res) =>{
+    let query = {}
+    if (req.query.hotelId){
+      query = {...query, hotelId: req.query.hotelId}
     }
-    if (req.query.userId) {
-      query = { ...query, userId: req.query.userId };
+    if (req.query.userId){
+      query = {...query, userId: req.query.userId}
     }
     try {
       let shows = await Show.find(query).populate("userId", "_id");
       res.status(201).json({
-        id: shows,
+        id:shows,
         success: true,
         message: "read Show",
       });
@@ -88,7 +88,7 @@ const controller = {
         message: error.message,
       });
     }
-  },
-};
+}
+}
 
 module.exports = controller;
