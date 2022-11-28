@@ -80,19 +80,30 @@ const controller = {
   destroy: async (req, res) => {
     let { id } = req.params;
     try {
-      let hotel = await Hotel.findOneAndDelete({ _id: id });
-      if (hotel) {
-        res.status(201).json({
-          id: hotel._id,
-          success: true,
-          messagge: "Delete Hotel",
-        });
-      } else {
-        res.status(404).json({
+      let hotelUser = await Hotel.findById(id);
+      if (hotelUser.userId.equals(req.user.id)) 
+      {
+        let hotel = await Hotel.findOneAndDelete({ _id: id });
+        if (hotel) {
+          res.status(201).json({
+            id: hotel._id,
+            success: true,
+            messagge: "Delete Hotel",
+          });
+        } else {
+          res.status(404).json({
+            success: false,
+            messagge: "Hotel not found",
+          });
+        }
+      }
+      else {
+        res.status(401).json({
           success: false,
-          messagge: "Hotel not found",
+          messagge: "Unauthorized",
         });
       }
+     
     } catch (error) {
       res.status(400).json({
         success: false,
@@ -105,21 +116,31 @@ const controller = {
   updateHotel: async (req, res) => {
     let { id } = req.params;
     try {
-      let update_Hotel = await Hotel.findByIdAndUpdate({ _id: id }, req.body, {
-        new: true,
-      });
-      if (update_Hotel) {
-        res.status(201).json({
-          id: update_Hotel,
-          success: true,
-          messagge: "Hotel Update",
+      let hotelUser = await Hotel.findById(id);
+      if (hotelUser.userId.equals(req.user.id)) {
+        let update_Hotel = await Hotel.findByIdAndUpdate({ _id: id }, req.body, {
+          new: true,
         });
-      } else {
-        res.status(404).json({
+        if (update_Hotel) {
+          res.status(201).json({
+            id: update_Hotel,
+            success: true,
+            messagge: "Hotel Update",
+          });
+        } else {
+          res.status(404).json({
+            success: false,
+            messagge: "Hotel not found",
+          });
+        }
+      }
+      else {
+        res.status(401).json({
           success: false,
-          messagge: "Hotel not found",
+          messagge: "Unauthorized",
         });
       }
+     
     } catch (error) {
       res.status(400).json({
         success: false,
