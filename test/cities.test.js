@@ -3,6 +3,8 @@ const chai = require("chai");
 const assert = chai.assert;
 const request = require("supertest"); //use mocha chai y supertest
 
+
+
 describe("GET CITIES", function () { //describe es un cuando armo un grupo de test, aca armo para agarrar las ciudades
     it("Deberia testear que es un array", function (done) { //el it es como un caso, primer caso q sea un array
         request(app) //pedido a la app
@@ -78,16 +80,22 @@ describe("POST CITIES", function () {
 }); 
 
 describe("DELETE CITIES", function () {
-    it("Deberia testear que se elimino una ciudad", function (done) {
-        request(app)
-            .delete("/api/city/636d5c20033f2a5f173b1127")
-            .expect(201)
-            .end(function (err, res) {
-                if (err) {
-                    return done(err);
-                }
-
-                done();
-            });
+    it("Deberia testear que la ciudad se elimino correctamente", function (done) {
+      const id = "6384fd368e9295a5871f875a";
+      const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODNhYzU4NjBmOTU4MTk3OTdkMTQzMSIsIm5hbWUiOiJTYW50aWFnbyIsInBob3RvIjoiIiwibG9nZ2VkIjp0cnVlLCJyb2xlIjoidXNlciIsImlhdCI6MTY2OTY0NDM3NSwiZXhwIjoxNjY5NzMwNzc1fQ.FSuY9iuPZFR6m8BcgqRZBmLMNR8P_tV801POSav_SWA";
+  
+      request(app)
+        .delete(`/api/city/${id}`)
+        .auth(token, { type: "bearer" } )
+        .expect(201)
+        .end(function (err, res) {
+          if (err) {
+            return done(err);
+          }
+  
+          done();
+        });
     });
-    });
+  });
+  
