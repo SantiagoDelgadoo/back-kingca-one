@@ -6,6 +6,7 @@ const {
   userSignedUpResponse,
   userNotFoundResponse,
   invalidCredentialsResponse,
+  userSignedOutResponse
 } = require("../config/responses");
 const jwt = require("jsonwebtoken");
 const controller = {
@@ -107,6 +108,7 @@ const controller = {
       next(error);
     }
   },
+
   getUser: async (req, res) => {
     let { id } = req.params;
     try {
@@ -145,5 +147,17 @@ const controller = {
     
     },
 
+
+  logout: async (req, res, next) => {
+    const { email } = req.user;
+    try {
+      await User.findOneAndUpdate({ email }, { logged: false }, { new: true });
+      return userSignedOutResponse(req, res);
+    } catch (error) {
+      next(error);
+    }
+  },
+
 };
+
 module.exports = controller; //exporto el controlador
