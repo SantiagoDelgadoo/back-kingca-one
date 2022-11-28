@@ -25,13 +25,21 @@ const controller ={
         deleteItinerary: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
             let {id} = req.params
             try {
+                let itineraryUser = await Itinerary.findById(id);
+                if (itineraryUser.userId.equals(req.user.id)) {
             let delete_itinerary = await Itinerary.findOneAndDelete({_id: id})
             res.status(201).json({//el status de exito de creacion es 201
                 id: delete_itinerary._id,
                 success: true,
                 messagge: 'itineraryDelete'
             }) 
-            
+        }
+        else {
+            res.status(401).json({
+                success: false,
+                message: "Unauthorized",
+            });
+        }
             } catch (error) {
                 res.status(400).json({
                     success: false,
@@ -45,13 +53,22 @@ const controller ={
            EditItinerary: async (req,res) =>{ //la funcion async siempre depende de dos parametros, REQ requerimiento de la peticion y RES respuesta de la peticion
                 let {id} = req.params
                 try {
+                let itineraryUser = await Itinerary.findById(id);
+                if (itineraryUser.userId.equals(req.user.id)) { 
                 let editItinerary = await Itinerary.findByIdAndUpdate({_id: id},req.body,{new:true})
                 console.log(editItinerary);
                 res.status(201).json({//el status de exito de creacion es 201
                     itineraryEdit: editItinerary,
                     success: true,
                     messagge: 'itineraryEdit'
-                }) 
+                })
+            }
+            else {
+                res.status(401).json({
+                    success: false,
+                    message: "Unauthorized",
+                });
+            } 
                 } catch (error) {
                     res.status(400).json({
                         success: false,
