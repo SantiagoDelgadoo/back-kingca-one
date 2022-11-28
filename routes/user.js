@@ -1,5 +1,5 @@
 let router = require ('express').Router () //requiero el metodo de enrrutamiento de express
-let { userRegister,verifyUser,signIn,signInWithToken } = require ('../controllers/user') //desestructuro el controlador de user para traerme los metodos que necesito enrrutar, mas adelante si quier agregar alguno los voy a poder agregar dentro de las {} y utilizando una , para separarlos
+let { userRegister,verifyUser,signIn,signInWithToken,getUser,EditUser } = require ('../controllers/user') //desestructuro el controlador de user para traerme los metodos que necesito enrrutar, mas adelante si quier agregar alguno los voy a poder agregar dentro de las {} y utilizando una , para separarlos
 const accountExistsSignUp = require ('../middlewares/accountExistSignUp')
 const accountExistsSignIn = require ('../middlewares/accountExistsSignIn')
 const accountHasBeenVerified = require ('../middlewares/accountHasBeenVerified')
@@ -15,6 +15,8 @@ router.post('/sign-up', validator(schema), accountExistsSignUp, userRegister)//e
 router.get('/verify/:code',verifyUser) 
 router.post('/signin',validator(schemaUserSignIn),accountExistsSignIn,accountHasBeenVerified,signIn) 
 router.post('/token', passport.authenticate('jwt', { session:false }), mustSignIn, signInWithToken)
+router.route('/:id').get(getUser)
+router.route("/:id").patch(EditUser);
 
 
 module.exports = router;
