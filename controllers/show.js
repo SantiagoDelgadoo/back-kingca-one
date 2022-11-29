@@ -19,6 +19,8 @@ const controller = {
   destroy: async (req, res) => {
     let { id } = req.params;
     try {
+      let showUser = await Show.findById(id);
+      if (showUser.userId.equals(req.user.id)) {
       let show = await Show.findOneAndDelete({ _id: id });
       if (show) {
         res.status(201).json({
@@ -32,7 +34,14 @@ const controller = {
           messagge: "Show not found",
         });
       }
-    } catch (error) {
+    }
+    else {
+      res.status(401).json({
+        success: false,
+        messagge: "Unauthorized",
+      });
+    }}
+     catch (error) {
       res.status(400).json({
         success: false,
         messagge: "No Delete Show",
@@ -43,6 +52,8 @@ const controller = {
   updateShow: async (req, res) => {
     let { id } = req.params;
     try {
+      let showUser = await Show.findById(id);
+      if (showUser.userId.equals(req.user.id)) {
       let update_Show = await Show.findByIdAndUpdate({ _id: id }, req.body, {
         new: true,
       });
@@ -56,6 +67,12 @@ const controller = {
         res.status(404).json({
           success: false,
           messagge: "Show not found",
+        });
+      }}
+      else {
+        res.status(401).json({
+          success: false,
+          messagge: "Unauthorized",
         });
       }
     } catch (error) {
