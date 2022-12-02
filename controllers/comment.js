@@ -31,7 +31,9 @@ const controller = {
     try {
       let arrayComment = await Comment.find({ showId: showId }).sort({
         date: "desc",
-      });
+      }).populate("userId",[
+        "name","photo"
+      ]);
       if (arrayComment) {
         res.status(200).json({
           response: arrayComment,
