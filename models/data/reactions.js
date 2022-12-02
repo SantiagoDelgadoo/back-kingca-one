@@ -6,7 +6,7 @@ let reactions = [
         iconBack: "https://img.icons8.com/ios/50/null/facebook-like--v1.png",
         userId: ["636d39111834aa8ba98269f3"]
     },
-    {
+    /* {
         itineraryid: "6376a7832c93d012a5db1959",
         name: "Not like",
         icon: "https://img.icons8.com/ios-filled/100/ea5318/thumbs-down.png",
@@ -26,11 +26,11 @@ let reactions = [
         icon: "https://img.icons8.com/ios-filled/100/ea5318/surprised.png",
         iconBack: "https://img.icons8.com/ios-filled/100/null/surprised.png",
         userId: ["636d39111834aa8ba98269f3"]
-    },
+    }, */
 
 
 
-    {
+    /* {
         itineraryid: "6376a7832c93d012a5db195b",
         name: "Like",
         icon: "https://img.icons8.com/ios-filled/100/ea5318/facebook-like.png",
@@ -358,7 +358,7 @@ let reactions = [
         icon: "https://img.icons8.com/ios-filled/100/ea5318/surprised.png",
         iconBack: "https://img.icons8.com/ios-filled/100/null/surprised.png",
         userId: ["6383ac5860f95819797d1431"]
-    },
+    }, */
 ]
 
 

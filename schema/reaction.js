@@ -17,10 +17,7 @@ const schema = joi.object({
     "string.empty": "the field is empty",
     "string.base": "userid must be a string",
   }),
-  userId: joi.string().required().messages({
-    "string.empty": "the field is empty",
-    "string.base": "userid must be a string",
-  }),
+  userId: joi.any()
 });
 
 module.exports = schema;

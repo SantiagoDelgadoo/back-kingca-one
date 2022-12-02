@@ -4,10 +4,13 @@ const validator = require ('../middlewares/validator')
 const passport = require("../config/passport");
 let router = require('express').Router() //requiero el metodo de enrrutamiento de express
 
-let {create} = controller
+let {create, post, get} = controller
 
 
-router.post('/', validator (schema), passport.authenticate("jwt", { session: false }), create) 
+router.post('/', validator (schema), create)
+router.put('/', passport.authenticate('jwt', { session:false }) , post)
+router.get('/', get)
+
 
 
 
