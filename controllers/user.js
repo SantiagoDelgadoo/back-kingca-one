@@ -73,7 +73,7 @@ const controller = {
             role: user1.role,
           },
           process.env.KEY_JWT,
-          { expiresIn: 60 * 60 * 24 }
+          { expiresIn: 60 * 60 * 1000 }
         );
         console.log(user1);
         return res.status(200).json({

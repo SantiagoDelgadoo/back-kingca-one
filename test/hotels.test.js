@@ -48,10 +48,15 @@ describe("GET /api/hotels", function () {
       });
   });
 });
-describe("DELETE /api/hotels", function () {
-  it("Deberia testear que se elimino un hotel", function (done) {
+describe("DELETE HOTELS", function () {
+  it("Deberia testear que el hotel se elimino correctamente", function (done) {
+    const id = "6384fda15ee8ed163ced76a6";
+    const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODNhYzU4NjBmOTU4MTk3OTdkMTQzMSIsIm5hbWUiOiJTYW50aWFnbyIsInBob3RvIjoiIiwibG9nZ2VkIjp0cnVlLCJyb2xlIjoidXNlciIsImlhdCI6MTY2OTY0NDM3NSwiZXhwIjoxNjY5NzMwNzc1fQ.FSuY9iuPZFR6m8BcgqRZBmLMNR8P_tV801POSav_SWA";
+
     request(app)
-      .delete("/api/hotel/637c7929f1c58a317b8da6f1")
+      .delete(`/api/hotel/${id}`)
+      .auth(token, { type: "bearer" } )
       .expect(201)
       .end(function (err, res) {
         if (err) {
@@ -62,3 +67,4 @@ describe("DELETE /api/hotels", function () {
       });
   });
 });
+
